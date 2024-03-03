@@ -27,17 +27,23 @@ addButton.addEventListener("click", function() {
 })
 
 onValue(taskListDB, function(snapshot) {
-  let itemsArray = Object.entries(snapshot.val())
+  if(snapshot.exists()){
+      let itemsArray = Object.entries(snapshot.val())
 
-  clearTaskListEl()
+      clearTaskListEl()
 
-  for (let i = 0; i < itemsArray.length; i++) {
-    let currentItem = itemsArray[i];
-    let currentItemID = currentItem[0]
-    let currentItemValue = currentItem[1]
+      for (let i = 0; i < itemsArray.length; i++) {
+      let currentItem = itemsArray[i];
+      let currentItemID = currentItem[0]
+      let currentItemValue = currentItem[1]
 
-    appendItem(currentItem)
+      appendItem(currentItem)
   }
+  }else{
+    tableBodyEl.innerHTML=`Empty task...`
+  }
+
+  
 })
 
 function getDayAsString(date) {
