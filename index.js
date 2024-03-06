@@ -23,7 +23,6 @@ addButton.addEventListener("click", function() {
   let inputTask = inputTaskEl.value
   push(taskListDB, inputTask)
   clearInputEl()
-  addDeleteColumn()
 })
 
 onValue(taskListDB, function(snapshot) {
