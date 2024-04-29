@@ -4,7 +4,6 @@ const appSettings = {
   databaseURL: "https://todo-app-b8b83-default-rtdb.asia-southeast1.firebasedatabase.app/"
 }
 
-
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 
@@ -21,9 +20,12 @@ headTitle.innerHTML = `Today is <important>${currentDay}</important>`
 
 addButton.addEventListener("click", function() {
   let inputTask = inputTaskEl.value
-  push(taskListDB, inputTask)
-  clearInputEl()
-  addDeleteColumn()
+  if(inputTask !== ""){
+    push(taskListDB, inputTask)
+  }else{
+    clearInputEl()
+  }
+
 })
 
 onValue(taskListDB, function(snapshot) {
@@ -51,8 +53,6 @@ function getDayAsString(date) {
   const dayIndex = date.getDay();
   return daysOfWeek[dayIndex];
 }
-
-
 
 function clearTaskListEl() {
   tableBodyEl.innerHTML = ""
